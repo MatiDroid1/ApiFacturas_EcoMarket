@@ -14,8 +14,8 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI api() {
         return new OpenAPI()
-                .info(new Info().title("API Pedidos")
-                        .description("Documentación de Pedidos para Ecomarket")
+                .info(new Info().title("API Facturas")
+                        .description("Documentación de Facturas para Ecomarket")
                         .version("v1"))
                 .components(new Components()
                         .addSecuritySchemes("ApiKeyAuth", new SecurityScheme()
