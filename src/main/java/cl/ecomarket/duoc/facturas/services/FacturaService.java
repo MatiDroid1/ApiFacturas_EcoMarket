@@ -28,6 +28,10 @@ public class FacturaService {
         return repo.findAll();
     }
 
+    public Factura obtenerPorId(Long id) {
+        return repo.findById(id).orElse(null);
+    }
+
 public Factura emitirFactura(FacturaRequestDTO req) {
     if (req.getVentaId() == null || req.getClienteId() == null) {
         throw new IllegalArgumentException("ventaId y clienteId no pueden ser null");

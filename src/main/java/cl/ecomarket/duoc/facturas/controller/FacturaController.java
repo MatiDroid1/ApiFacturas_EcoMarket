@@ -3,7 +3,6 @@ package cl.ecomarket.duoc.facturas.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,11 +30,21 @@ public class FacturaController {
     private FacturaService service;
 
     @GetMapping
+    @Operation(summary = "Listar todas las facturas")
     public ResponseEntity<List<Factura>> listar() {
         return ResponseEntity.ok(service.listar());
     }
 
-    
+    @GetMapping("/{id}")
+    @Operation(summary = "Obtener factura por ID")
+    public ResponseEntity<Factura> obtenerPorId(@PathVariable Long id) {
+        Factura factura = service.obtenerPorId(id);
+        if (factura != null) {
+            return ResponseEntity.ok(factura);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
 @PostMapping
 @Operation(summary = "Emitir una nueva factura")
